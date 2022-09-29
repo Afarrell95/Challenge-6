@@ -12,3 +12,28 @@ header{
     font-size: 30px;
     text-align: center;
 }
+
+.searchHistory{
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    height: 100px;
+}
+
+.mainSection{
+    background-color: aqua;
+    height: 100px;
+}
+
+.fiveDayForecast{
+    background-color: blueviolet;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.fdf{
+    background-color: rgb(32, 89, 89);
+    width:100px;
+}
