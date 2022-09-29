@@ -1,0 +1,14 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+header{
+    color: white;
+    background-image: linear-gradient(rgb(39, 29, 93), rgb(29, 14, 113), rgb(21, 21, 119));
+    height: 10vh;
+    font-size: 30px;
+    text-align: center;
+}
