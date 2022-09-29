@@ -1,5 +1,5 @@
 var appid = "3de3f45fef91dfdfd3378f39fe973f00";
-var city = "Savannah";
+var city = "san diego";
 
 function getFetch() {
   const url =
@@ -11,6 +11,7 @@ function getFetch() {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      document.querySelector(".mainSection").innerText = data.main.temp;
     });
 }
 
