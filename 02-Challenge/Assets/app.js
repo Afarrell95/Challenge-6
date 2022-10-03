@@ -1,5 +1,10 @@
 var apiKey = "3de3f45fef91dfdfd3378f39fe973f00";
-var city = "atlanta";
+var searchBtn = document.querySelector("searchBttn");
+
+function getValue() {
+  var city = document.querySelector("input").value;
+  return city;
+}
 
 function getFetch() {
   const url =
@@ -19,4 +24,5 @@ function getFetch() {
     });
 }
 
+searchBtn.addEventListener("click", getValue());
 getFetch();
