@@ -1,28 +1,26 @@
-var apiKey = "3de3f45fef91dfdfd3378f39fe973f00";
+// var apiKey = "3de3f45fef91dfdfd3378f39fe973f00";
 var searchBtn = document.querySelector("searchBttn");
-
-function getValue() {
-  var city = document.querySelector("input").value;
-  return city;
-}
+var city = "atlanta"
+// function getValue() {
+//   var city = document.querySelector("input").value;
+//   return city;
+// }
 
 function getFetch() {
   const url =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
-    city +
-    "&appid=" +
-    apiKey;
+  'https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly&appid=3de3f45fef91dfdfd3378f39fe973f00'
+  
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
       document.querySelector(".temperature").innerHTML =
-        "Temp:" + data.main.temp;
-      document.querySelector(".wind").innerHTML = "Wind:" + data.wind.speed;
+        "Temp:" + data.current.temp;
+      document.querySelector(".wind").innerHTML = "Wind:" + data.current.wind_speed;
       document.querySelector(".humid").innerHTML =
-        "Humidity:" + data.main.humidity;
+        "Humidity:" + data.current.humidity;
     });
 }
 
-searchBtn.addEventListener("click", getValue());
+// searchBtn.addEventListener("click", getValue());
 getFetch();
