@@ -1,4 +1,5 @@
-var searchBtn = document.querySelector("searchBttn");
+var searchBttn = document.querySelector("searchBttn");
+var searchInput = document.querySelector("input");
 var today = document.querySelector(".todays-date");
 const toadysDate = moment().format("MM-DD-YY");
 today.innerHTML = toadysDate;
@@ -7,6 +8,11 @@ today.innerHTML = toadysDate;
 //append localstorage history to history list
 //take city inout from search and use geo api to convert to lat lon
 //take lat and lon and input it to weather api
+
+searchBttn.addEventListener("click", () => {
+  console.log(searchInput.value);
+});
+
 function getCity() {
   const geoUrl =
     "http://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&appid=1743d618c4fefd71fcce229c23abd52a";
