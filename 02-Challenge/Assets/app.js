@@ -1,8 +1,7 @@
 var searchBtn = document.querySelector("searchBttn");
-var city = "san diego";
-var todaysDate = moment();
-document.querySelector(".todays-date").innerHTML =
-  todaysDate.format("M-D-YYYY");
+var today = document.querySelector(".todays-date");
+const toadysDate = moment().format("MM-DD-YY");
+today.innerHTML = toadysDate;
 function getFetch() {
   const url =
     "https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly&appid=3de3f45fef91dfdfd3378f39fe973f00";
