@@ -2,6 +2,17 @@ var searchBtn = document.querySelector("searchBttn");
 var today = document.querySelector(".todays-date");
 const toadysDate = moment().format("MM-DD-YY");
 today.innerHTML = toadysDate;
+
+function getCity() {
+  const url =
+    "http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit={limit}&appid=1743d618c4fefd71fcce229c23abd52a";
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+}
+
 function getFetch() {
   const url =
     "https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly&appid=3de3f45fef91dfdfd3378f39fe973f00";
@@ -62,4 +73,5 @@ function getFetch() {
 // }
 
 // setToLocal();
+getCity();
 getFetch();
