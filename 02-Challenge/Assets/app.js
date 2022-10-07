@@ -4,9 +4,9 @@ const toadysDate = moment().format("MM-DD-YY");
 today.innerHTML = toadysDate;
 
 function getCity() {
-  const url =
-    "http://api.openweathermap.org/geo/1.0/direct?q={city name}&limit={limit}&appid=1743d618c4fefd71fcce229c23abd52a";
-  fetch(url)
+  const geoUrl =
+    "http://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&appid=1743d618c4fefd71fcce229c23abd52a";
+  fetch(geoUrl)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
