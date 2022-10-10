@@ -1,22 +1,32 @@
 var searchBttn = document.querySelector(".searchBttn");
 var searchInput = document.querySelector("input");
 var today = document.querySelector(".todays-date");
+var historyDisplay = document.querySelector(".history-list");
+
 const toadysDate = moment().format("MM-DD-YY");
 today.innerHTML = toadysDate;
-//connect search button to text input to return input on click
-//save seach inputs to localstorage
+
 //append localstorage history to history list
 //take city inout from search and use geo api to convert to lat lon
 //take lat and lon and input it to weather api
 
-searchBttn.addEventListener("click", button);
+let city = searchBttn.addEventListener("click", button);
+function loadHistory() {
+  let list = document.createElement("li");
+  list.textContent = localStorage.getItem("history");
+  historyDisplay.appendChild(list);
+}
+
 function button() {
-  console.log(searchInput.value);
+  localStorage.setItem("history", searchInput.value);
+  return searchInput.value;
 }
 
 function getCity() {
   const geoUrl =
-    "http://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&appid=1743d618c4fefd71fcce229c23abd52a";
+    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    city +
+    "&limit=1&appid=1743d618c4fefd71fcce229c23abd52a";
   fetch(geoUrl)
     .then((res) => res.json())
     .then((data) => {
@@ -78,11 +88,10 @@ function getFetch() {
     });
 }
 
-// function setToLocal() {
-//   let history = document.querySelector("input");
-//   console.log(history);
-// }
+function setToLocal() {
+  localStorage.setItem("history", searchInput.value);
+}
 
-// setToLocal();
+loadHistory();
 getCity();
 getFetch();
