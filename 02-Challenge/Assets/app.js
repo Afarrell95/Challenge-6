@@ -1,4 +1,4 @@
-var searchBttn = document.querySelector("searchBttn");
+var searchBttn = document.querySelector(".searchBttn");
 var searchInput = document.querySelector("input");
 var today = document.querySelector(".todays-date");
 const toadysDate = moment().format("MM-DD-YY");
@@ -9,9 +9,10 @@ today.innerHTML = toadysDate;
 //take city inout from search and use geo api to convert to lat lon
 //take lat and lon and input it to weather api
 
-searchBttn.addEventListener("click", () => {
+searchBttn.addEventListener("click", button);
+function button() {
   console.log(searchInput.value);
-});
+}
 
 function getCity() {
   const geoUrl =
