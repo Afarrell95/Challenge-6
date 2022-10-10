@@ -6,11 +6,11 @@ var historyDisplay = document.querySelector(".history-list");
 const toadysDate = moment().format("MM-DD-YY");
 today.innerHTML = toadysDate;
 
-//append localstorage history to history list
-//take city inout from search and use geo api to convert to lat lon
+//take city input from search and use geo api to convert to lat lon
 //take lat and lon and input it to weather api
 
-let city = searchBttn.addEventListener("click", button);
+let buttnFunc = searchBttn.addEventListener("click", button);
+
 function loadHistory() {
   let list = document.createElement("li");
   list.textContent = localStorage.getItem("history");
@@ -22,6 +22,10 @@ function button() {
   return searchInput.value;
 }
 
+let lat;
+let lon;
+let city = "atlanta";
+
 function getCity() {
   const geoUrl =
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
@@ -31,12 +35,19 @@ function getCity() {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      lat = data[0].lat;
+      lon = data[0].lon;
     });
 }
-
+console.log(lat);
+console.log(lon);
 function getFetch() {
   const url =
-    "https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly&appid=3de3f45fef91dfdfd3378f39fe973f00";
+    "https://api.openweathermap.org/data/3.0/onecall?lat=" +
+    lat +
+    "&lon=" +
+    lon +
+    "&exclude=hourly&appid=3de3f45fef91dfdfd3378f39fe973f00";
 
   fetch(url)
     .then((res) => res.json())
