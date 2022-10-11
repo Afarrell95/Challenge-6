@@ -6,10 +6,7 @@ var historyDisplay = document.querySelector(".history-list");
 const toadysDate = moment().format("MM-DD-YY");
 today.innerHTML = toadysDate;
 
-//take city input from search and use geo api to convert to lat lon
-//take lat and lon and input it to weather api
-
-let buttnFunc = searchBttn.addEventListener("click", button);
+//make search value the city input for geo api
 
 function loadHistory() {
   let list = document.createElement("li");
@@ -17,16 +14,20 @@ function loadHistory() {
   historyDisplay.appendChild(list);
 }
 
-function button() {
-  localStorage.setItem("history", searchInput.value);
-  return searchInput.value;
-}
-
 let lat;
 let lon;
-let city = "atlanta";
 
-function getCity() {
+let buttnFunc = searchBttn.addEventListener("click", function (e) {
+  event.preventDefault();
+  localStorage.setItem("history", searchInput.value);
+  const city = searchInput.value;
+  console.log(city);
+  //   if (city) {
+  //     getCity();
+  //   }
+  // });
+
+  // function getCity() {
   const geoUrl =
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
     city +
@@ -35,6 +36,7 @@ function getCity() {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+
       lat = data[0].lat;
       lon = data[0].lon;
 
@@ -60,47 +62,45 @@ function getCity() {
             "UV Index:" + data.current.uvi;
           //fdf day one
           document.querySelector(".day-one-temp").innerHTML =
-            data.daily[0].temp.day;
+            "temp: " + data.daily[0].temp.day;
           document.querySelector(".day-one-wind").innerHTML =
-            data.daily[0].wind_speed;
+            "wind: " + data.daily[0].wind_speed;
           document.querySelector(".day-one-humid").innerHTML =
-            data.daily[0].humidity;
+            "hum: " + data.daily[0].humidity;
           //fdf day two
           document.querySelector(".day-two-temp").innerHTML =
-            data.daily[1].temp.day;
+            "temp: " + data.daily[1].temp.day;
           document.querySelector(".day-two-wind").innerHTML =
-            data.daily[1].wind_speed;
+            "wind: " + data.daily[1].wind_speed;
           document.querySelector(".day-two-humid").innerHTML =
-            data.daily[1].humidity;
+            "hum: " + data.daily[1].humidity;
           //fdf day three
           document.querySelector(".day-three-temp").innerHTML =
-            data.daily[2].temp.day;
+            "temp: " + data.daily[2].temp.day;
           document.querySelector(".day-three-wind").innerHTML =
-            data.daily[2].wind_speed;
+            "wind: " + data.daily[2].wind_speed;
           document.querySelector(".day-three-humid").innerHTML =
-            data.daily[2].humidity;
+            "hum: " + data.daily[2].humidity;
           //fdf day four
           document.querySelector(".day-four-temp").innerHTML =
-            data.daily[3].temp.day;
+            "temp: " + data.daily[3].temp.day;
           document.querySelector(".day-four-wind").innerHTML =
-            data.daily[3].wind_speed;
+            "wind: " + data.daily[3].wind_speed;
           document.querySelector(".day-four-humid").innerHTML =
-            data.daily[3].humidity;
+            "hum: " + data.daily[3].humidity;
           //fdf day five
           document.querySelector(".day-five-temp").innerHTML =
-            data.daily[4].temp.day;
+            "temp: " + data.daily[4].temp.day;
           document.querySelector(".day-five-wind").innerHTML =
-            data.daily[4].wind_speed;
+            "wind: " + data.daily[4].wind_speed;
           document.querySelector(".day-five-humid").innerHTML =
-            data.daily[4].humidity;
+            "hum: " + data.daily[4].humidity;
         });
     });
-}
+});
 
 function setToLocal() {
   localStorage.setItem("history", searchInput.value);
 }
 
 loadHistory();
-getCity();
-// getFetch();
